@@ -1,13 +1,21 @@
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { strings } from '@angular-devkit/core';
+import { apply, mergeWith, Rule, SchematicContext, template, Tree, url } from '@angular-devkit/schematics';
+
+import { Parametros } from './parametros.d';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
-export function meuSchematic(_options: any): Rule {
+export function meuSchematic(_options: Parametros): Rule {
   return (tree: Tree, _context: SchematicContext) => {
-    const { nome } = _options;
+    const sourceTemplates = url('./files');
 
-    tree.create('hello.js', `console.log('Olá ${nome}');`);
+    const sourceParametrizedTemplates = apply(sourceTemplates, [
+      template({
+        ..._options,
+        ...strings
+      })
+    ]);
 
-    return tree;
+    return mergeWith(sourceParametrizedTemplates)(tree, _context);
   };
 }
