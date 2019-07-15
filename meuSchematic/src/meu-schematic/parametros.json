@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "MeuSchematic",
+  "title": "Parâmetros do Schematic",
+  "type": "object",
+  "description": "Exemplo Schematic",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome da pessoa",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "Quem você quer falar oi?"
+    }
+  },
+  "required": ["nome"]
+}

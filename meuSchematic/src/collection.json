@@ -2,8 +2,9 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "meu-schematic": {
-      "description": "A blank schematic.",
-      "factory": "./meu-schematic/index#meuSchematic"
+      "description": "Exemplo de um Schematic",
+      "factory": "./meu-schematic/index#meuSchematic",
+      "schema": "./meu-schematic/parametros.json"
     }
   }
 }
